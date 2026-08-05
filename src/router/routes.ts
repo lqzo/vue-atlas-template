@@ -20,7 +20,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         component: () => import('@/pages/dashboard/DashboardPage.vue'),
         meta: {
           title: 'Dashboard',
-          icon: 'DataBoard',
+          icon: 'svg:dashboard',
           affix: true,
           permissions: ['dashboard:view']
         }
@@ -35,7 +35,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         path: '',
         name: 'Table',
         component: () => import('@/pages/table/TablePage.vue'),
-        meta: { title: 'Table', icon: 'Grid', order: 20 }
+        meta: { title: 'Table', icon: 'svg:table', order: 20 }
       }
     ]
   },
@@ -47,7 +47,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         path: '',
         name: 'Form',
         component: () => import('@/pages/form/FormPage.vue'),
-        meta: { title: 'Form', icon: 'Edit', order: 30 }
+        meta: { title: 'Form', icon: 'svg:form', order: 30 }
       }
     ]
   },

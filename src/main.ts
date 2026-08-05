@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import 'nprogress/nprogress.css'
 import './styles/index.scss'
+import { setupSvgIcons } from './icons'
 import App from './App.vue'
 import router from './router'
 import { setupAuthFailureHandler } from './router/auth-failure'
@@ -17,5 +18,6 @@ app.use(router)
 setupRouterGuard(router)
 setupAuthFailureHandler(router)
 setupPermissionDirective(app)
+setupSvgIcons()
 
 app.mount('#app')

@@ -37,6 +37,8 @@ src/
   api/          接口模块
   directives/   全局指令
   layout/       后台布局与布局组件
+  icons/        SVG 图标注册
+  mock/         开发环境 mock 数据
   pages/        路由页面
   router/       路由、守卫、菜单生成
   stores/       Pinia 状态
@@ -90,7 +92,7 @@ export const appSettings = {
 ```ts
 meta: {
   title: 'Dashboard',
-  icon: 'DataBoard',
+  icon: 'svg:dashboard',
   order: 10,
   permissions: ['dashboard:view']
 }
@@ -98,12 +100,25 @@ meta: {
 
 这些字段会影响菜单、面包屑、页面标题和权限判断。
 
+## 图标
+
+菜单图标支持两种来源：
+
+```ts
+meta: { icon: 'svg:dashboard' } // 使用 src/icons/svg/dashboard.svg
+meta: { icon: 'DataBoard' }     // 使用 Element Plus Icons
+```
+
+新增 SVG 图标时，把文件放到 `src/icons/svg/`，然后在路由 meta 中使用 `svg:文件名`。
+
 ## Mock API
 
 Template 默认在开发环境中提供两个轻量 mock：
 
-- `src/api/auth.ts`：登录和用户信息
-- `src/api/projects.ts`：项目列表查询、筛选和分页
+- `src/mock/auth.ts`：登录和用户信息
+- `src/mock/projects.ts`：项目列表查询、筛选和分页
+
+`src/api/` 负责暴露业务 API 函数，开发环境会调用 `src/mock/`，生产环境会调用真实 HTTP 请求。
 
 生产环境下这些 API 会走 `src/utils/request.ts` 中的 axios 实例，接口地址由 `VITE_API_BASE_URL` 控制。
 

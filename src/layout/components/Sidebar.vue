@@ -2,8 +2,9 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { appSettings } from '@/settings'
+import SvgIcon from '@/components/SvgIcon.vue'
 import { usePermissionStore } from '@/stores/permission'
-import { getMenuIcon } from './icons'
+import { getElementIcon, getSvgIconName, isSvgIcon } from './icons'
 
 defineProps<{
   collapsed: boolean
@@ -28,7 +29,10 @@ const menuRoutes = computed(() => permissionStore.menus)
       text-color="#cbd5e1"
     >
       <el-menu-item v-for="item in menuRoutes" :key="item.path" :index="item.path">
-        <el-icon><component :is="getMenuIcon(item.icon)" /></el-icon>
+        <el-icon>
+          <SvgIcon v-if="isSvgIcon(item.icon)" :name="getSvgIconName(item.icon)" />
+          <component :is="getElementIcon(item.icon)" v-else />
+        </el-icon>
         <span>{{ item.title }}</span>
       </el-menu-item>
     </el-menu>
