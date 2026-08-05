@@ -1,16 +1,34 @@
 <script setup lang="ts">
 import { ArrowDown } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
+const router = useRouter()
 
 const emit = defineEmits<{
   logout: []
 }>()
+
+function handleCommand(command: string) {
+  if (command === 'profile') {
+    router.push('/profile')
+    return
+  }
+
+  if (command === 'github') {
+    window.open('https://github.com/lqzo/vue-atlas-template', '_blank', 'noopener,noreferrer')
+    return
+  }
+
+  if (command === 'logout') {
+    emit('logout')
+  }
+}
 </script>
 
 <template>
-  <el-dropdown trigger="click" @command="emit('logout')">
+  <el-dropdown trigger="click" @command="handleCommand">
     <button class="user-dropdown" type="button">
       <span class="user-dropdown__avatar">{{ userStore.name.slice(0, 1) || 'A' }}</span>
       <span class="user-dropdown__name">{{ userStore.name || 'Atlas Admin' }}</span>
@@ -18,6 +36,8 @@ const emit = defineEmits<{
     </button>
     <template #dropdown>
       <el-dropdown-menu>
+        <el-dropdown-item command="profile">Profile</el-dropdown-item>
+        <el-dropdown-item command="github">GitHub</el-dropdown-item>
         <el-dropdown-item command="logout">Logout</el-dropdown-item>
       </el-dropdown-menu>
     </template>

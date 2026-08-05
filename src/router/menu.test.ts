@@ -75,6 +75,47 @@ describe('createMenus', () => {
     ])
   })
 
+  it('keeps nested child groups when alwaysShow is true', () => {
+    const routes: AppRouteRecordRaw[] = [
+      {
+        path: '/nested',
+        meta: { title: 'Nested', alwaysShow: true },
+        children: [
+          { path: 'menu1', meta: { title: 'Menu 1' } },
+          {
+            path: 'menu2',
+            meta: { title: 'Menu 2', alwaysShow: true },
+            children: [{ path: 'level', meta: { title: 'Menu 2-1' } }]
+          }
+        ]
+      }
+    ]
+
+    expect(createMenus(routes)).toEqual([
+      {
+        path: '/nested',
+        title: 'Nested',
+        icon: undefined,
+        children: [
+          { path: '/nested/menu1', title: 'Menu 1', icon: undefined, children: undefined },
+          {
+            path: '/nested/menu2',
+            title: 'Menu 2',
+            icon: undefined,
+            children: [
+              {
+                path: '/nested/menu2/level',
+                title: 'Menu 2-1',
+                icon: undefined,
+                children: undefined
+              }
+            ]
+          }
+        ]
+      }
+    ])
+  })
+
   it('does not add trailing slashes for empty child paths', () => {
     const routes: AppRouteRecordRaw[] = [
       {

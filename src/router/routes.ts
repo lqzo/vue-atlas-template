@@ -54,14 +54,38 @@ export const constantRoutes: AppRouteRecordRaw[] = [
   {
     path: '/nested',
     component: AdminLayout,
-    redirect: '/nested/menu',
+    redirect: '/nested/menu1',
     meta: { title: 'Nested', icon: 'svg:nested', order: 40, alwaysShow: true },
     children: [
       {
-        path: 'menu',
-        name: 'NestedMenu',
+        path: 'menu1',
+        name: 'NestedMenu1',
         component: () => import('@/pages/nested/NestedMenuPage.vue'),
         meta: { title: 'Menu 1' }
+      },
+      {
+        path: 'menu2',
+        meta: { title: 'Menu 2', alwaysShow: true },
+        children: [
+          {
+            path: 'level',
+            name: 'NestedLevel',
+            component: () => import('@/pages/nested/NestedLevelPage.vue'),
+            meta: { title: 'Menu 2-1' }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/pages/profile/ProfilePage.vue'),
+        meta: { title: 'Profile', hidden: true }
       }
     ]
   },

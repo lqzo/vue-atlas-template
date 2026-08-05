@@ -106,6 +106,8 @@ meta: {
 meta: { title: 'Nested', icon: 'svg:nested', alwaysShow: true }
 ```
 
+嵌套菜单由 `src/layout/components/SidebarItem.vue` 递归渲染，示例路由位于 `/nested/menu1` 和 `/nested/menu2/level`。
+
 外链菜单使用 `externalLink`：
 
 ```ts
@@ -157,6 +159,8 @@ Template 默认在开发环境中提供两个轻量 mock：
 - `pnpm build`
 
 编辑器基础格式通过 `.editorconfig` 约束，统一使用 LF、2 空格缩进和 UTF-8。
+
+CI 使用 Node 24 和 pnpm 11.1.1。pnpm 会先通过 Corepack 启用，再交给 `actions/setup-node` 做依赖缓存。
 
 ## 登录失效
 
