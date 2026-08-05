@@ -1,4 +1,5 @@
 import { request } from '@/utils/request'
+import { AppRequestError } from '@/utils/request'
 
 export interface LoginParams {
   username: string
@@ -14,6 +15,14 @@ export interface UserProfile {
 
 export async function loginApi(params: LoginParams) {
   if (import.meta.env.DEV) {
+    if (params.username !== 'admin' || params.password !== 'atlas') {
+      throw new AppRequestError({
+        status: 401,
+        code: 'INVALID_CREDENTIALS',
+        message: 'Invalid username or password'
+      })
+    }
+
     return {
       token: `${params.username}-atlas-token`
     }

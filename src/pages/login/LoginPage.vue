@@ -2,11 +2,13 @@
 import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { normalizeRequestError } from '@/utils/request'
 
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 const loading = ref(false)
+const errorMessage = ref('')
 const form = reactive({
   username: 'admin',
   password: 'atlas'
@@ -14,9 +16,12 @@ const form = reactive({
 
 async function submit() {
   loading.value = true
+  errorMessage.value = ''
   try {
     await userStore.login(form)
     await router.push((route.query.redirect as string) || '/')
+  } catch (error) {
+    errorMessage.value = normalizeRequestError(error).message
   } finally {
     loading.value = false
   }
@@ -28,6 +33,14 @@ async function submit() {
     <section class="login-page__panel">
       <h1>Vue Atlas Template</h1>
       <p>Clean starter for modern Vue admin applications.</p>
+      <el-alert
+        v-if="errorMessage"
+        :title="errorMessage"
+        type="error"
+        show-icon
+        :closable="false"
+        class="login-page__alert"
+      />
       <el-form label-position="top" @submit.prevent="submit">
         <el-form-item label="Username">
           <el-input v-model="form.username" />
@@ -68,6 +81,10 @@ async function submit() {
 .login-page__panel p {
   margin: 0 0 24px;
   color: var(--atlas-muted);
+}
+
+.login-page__alert {
+  margin-bottom: 16px;
 }
 
 .login-page__submit {

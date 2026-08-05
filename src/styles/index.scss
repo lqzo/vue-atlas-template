@@ -51,6 +51,16 @@ a {
   font-size: 14px;
 }
 
+.table-toolbar {
+  margin-bottom: 12px;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+
 @media (max-width: 640px) {
   .page {
     padding: 16px;
@@ -58,5 +68,10 @@ a {
 
   .page-header {
     display: grid;
+  }
+
+  .table-footer {
+    justify-content: flex-start;
+    overflow-x: auto;
   }
 }

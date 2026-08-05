@@ -12,6 +12,8 @@ Vue Atlas Template 是 Vue Atlas 系列的极简后台模板，对标 `vue-admin
 - Element Plus 组件和样式自动按需导入
 - Axios 请求基础层与统一错误归一化
 - 登录、退出、Dashboard、Table、Form、401、403、404、500 页面
+- 开发环境 mock 登录与 mock 列表查询
+- 基础列表筛选、分页和表单校验示例
 - `v-permission` 按钮权限指令
 - Vitest 单元测试覆盖菜单、标题和请求错误逻辑
 
@@ -61,6 +63,8 @@ username: admin
 password: atlas
 ```
 
+输入其它账号或密码会触发统一错误类型 `AppRequestError`，登录页会展示对应错误状态。
+
 ## 路由元信息
 
 后台核心能力由路由元信息驱动：
@@ -75,6 +79,15 @@ meta: {
 ```
 
 这些字段会影响菜单、面包屑、页面标题和权限判断。
+
+## Mock API
+
+Template 默认在开发环境中提供两个轻量 mock：
+
+- `src/api/auth.ts`：登录和用户信息
+- `src/api/projects.ts`：项目列表查询、筛选和分页
+
+生产环境下这些 API 会走 `src/utils/request.ts` 中的 axios 实例，接口地址由 `VITE_API_BASE_URL` 控制。
 
 ## 自动导入
 

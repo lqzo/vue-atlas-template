@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 
 const form = reactive({
   name: 'Vue Atlas',
@@ -7,6 +8,24 @@ const form = reactive({
   enabled: true,
   remark: ''
 })
+
+const formRef = ref<FormInstance>()
+const rules: FormRules = {
+  name: [
+    { required: true, message: 'Please enter project name', trigger: 'blur' },
+    { min: 3, max: 40, message: 'Length should be 3 to 40 characters', trigger: 'blur' }
+  ],
+  owner: [{ required: true, message: 'Please enter owner', trigger: 'blur' }]
+}
+
+async function save() {
+  await formRef.value?.validate()
+  ElMessage.success('Saved')
+}
+
+function reset() {
+  formRef.value?.resetFields()
+}
 </script>
 
 <template>
@@ -19,11 +38,11 @@ const form = reactive({
     </div>
 
     <el-card shadow="never" class="form-card">
-      <el-form :model="form" label-width="120px">
-        <el-form-item label="Name">
+      <el-form ref="formRef" :model="form" :rules="rules" label-width="120px">
+        <el-form-item label="Name" prop="name">
           <el-input v-model="form.name" placeholder="Project name" />
         </el-form-item>
-        <el-form-item label="Owner">
+        <el-form-item label="Owner" prop="owner">
           <el-input v-model="form.owner" placeholder="Owner" />
         </el-form-item>
         <el-form-item label="Enabled">
@@ -33,8 +52,8 @@ const form = reactive({
           <el-input v-model="form.remark" type="textarea" :rows="4" placeholder="Optional notes" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary">Save</el-button>
-          <el-button>Cancel</el-button>
+          <el-button type="primary" @click="save">Save</el-button>
+          <el-button @click="reset">Reset</el-button>
         </el-form-item>
       </el-form>
     </el-card>
