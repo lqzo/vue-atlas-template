@@ -1,0 +1,19 @@
+import { createApp } from 'vue'
+import 'nprogress/nprogress.css'
+import './styles/index.scss'
+import App from './App.vue'
+import router from './router'
+import { setupRouterGuard } from './router/guard'
+import { createPinia } from 'pinia'
+import { setupPermissionDirective } from './directives/permission'
+
+const app = createApp(App)
+const pinia = createPinia()
+
+app.use(pinia)
+app.use(router)
+
+setupRouterGuard(router)
+setupPermissionDirective(app)
+
+app.mount('#app')
