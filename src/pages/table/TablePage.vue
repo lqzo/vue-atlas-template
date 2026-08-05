@@ -47,10 +47,15 @@ onMounted(fetchProjects)
       <el-button type="primary">Create</el-button>
     </div>
 
-    <el-card shadow="never">
+    <el-card shadow="never" class="page-card">
       <el-form :model="query" inline class="table-toolbar">
         <el-form-item label="Keyword">
-          <el-input v-model="query.keyword" clearable placeholder="Name or owner" @keyup.enter="search" />
+          <el-input
+            v-model="query.keyword"
+            clearable
+            placeholder="Name or owner"
+            @keyup.enter="search"
+          />
         </el-form-item>
         <el-form-item label="Status">
           <el-select v-model="query.status" clearable placeholder="All" style="width: 160px">

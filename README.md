@@ -53,6 +53,7 @@ pnpm dev
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm build:staging
 ```
 
 ## 默认账号
@@ -105,6 +106,26 @@ Template 默认在开发环境中提供两个轻量 mock：
 - `src/api/projects.ts`：项目列表查询、筛选和分页
 
 生产环境下这些 API 会走 `src/utils/request.ts` 中的 axios 实例，接口地址由 `VITE_API_BASE_URL` 控制。
+
+## 环境模式
+
+当前提供三个环境文件：
+
+- `.env.development`
+- `.env.staging`
+- `.env.production`
+
+`pnpm build:staging` 会使用 staging 模式构建，方便在正式生产前接入预发环境。
+
+## 工程校验
+
+仓库已提供 GitHub Actions CI，会在 push 和 pull request 时执行：
+
+- `pnpm typecheck`
+- `pnpm test`
+- `pnpm build`
+
+编辑器基础格式通过 `.editorconfig` 约束，统一使用 LF、2 空格缩进和 UTF-8。
 
 ## 登录失效
 

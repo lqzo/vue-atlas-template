@@ -37,7 +37,7 @@ function reset() {
       </div>
     </div>
 
-    <el-card shadow="never" class="form-card">
+    <el-card shadow="never" class="page-card form-card">
       <el-form ref="formRef" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="Name" prop="name">
           <el-input v-model="form.name" placeholder="Project name" />
