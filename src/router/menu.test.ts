@@ -31,6 +31,26 @@ describe('createMenus', () => {
     ])
   })
 
+  it('orders promoted dashboard before sibling routes', () => {
+    const routes: AppRouteRecordRaw[] = [
+      {
+        path: '/table',
+        children: [{ path: '', meta: { title: 'Table', order: 20 } }]
+      },
+      {
+        path: '/form',
+        children: [{ path: '', meta: { title: 'Form', order: 30 } }]
+      },
+      {
+        path: '/',
+        meta: { title: 'Home', order: 1 },
+        children: [{ path: 'dashboard', meta: { title: 'Dashboard', order: 1 } }]
+      }
+    ]
+
+    expect(createMenus(routes).map((item) => item.title)).toEqual(['Dashboard', 'Table', 'Form'])
+  })
+
   it('keeps parent menu when alwaysShow is true', () => {
     const routes: AppRouteRecordRaw[] = [
       {

@@ -32,7 +32,7 @@ async function submit() {
   <main class="login-page">
     <section class="login-page__panel">
       <h1>Vue Atlas Template</h1>
-      <p>Clean starter for modern Vue admin applications.</p>
+      <p>面向现代 Vue 管理后台的清爽基础模板。</p>
       <el-alert
         v-if="errorMessage"
         :title="errorMessage"
@@ -42,14 +42,14 @@ async function submit() {
         class="login-page__alert"
       />
       <el-form label-position="top" @submit.prevent="submit">
-        <el-form-item label="Username">
+        <el-form-item label="用户名">
           <el-input v-model="form.username" />
         </el-form-item>
-        <el-form-item label="Password">
+        <el-form-item label="密码">
           <el-input v-model="form.password" type="password" show-password />
         </el-form-item>
         <el-button type="primary" native-type="submit" :loading="loading" class="login-page__submit">
-          Login
+          登录
         </el-button>
       </el-form>
     </section>

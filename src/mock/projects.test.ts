@@ -12,6 +12,6 @@ describe('mockProjectList', () => {
 
     expect(result.total).toBe(2)
     expect(result.list).toHaveLength(1)
-    expect(result.list[0].owner).toBe('Atlas Team')
+    expect(result.list[0].owner).toBe('Atlas 团队')
   })
 })

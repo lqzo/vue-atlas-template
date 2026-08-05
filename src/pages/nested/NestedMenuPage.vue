@@ -2,13 +2,13 @@
   <section class="page">
     <div class="page-header">
       <div>
-        <h1 class="page-title">Nested Menu</h1>
-        <p class="page-description">A minimal nested route page for sidebar menu structure.</p>
+        <h1 class="page-title">嵌套菜单</h1>
+        <p class="page-description">用于展示侧边栏层级结构的基础嵌套路由页面。</p>
       </div>
     </div>
 
     <el-card shadow="never" class="page-card">
-      Nested menus are driven by route children and rendered recursively by the sidebar.
+      嵌套菜单由路由 children 驱动，并通过侧边栏组件递归渲染。
     </el-card>
   </section>
 </template>

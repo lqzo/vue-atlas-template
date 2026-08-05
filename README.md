@@ -11,10 +11,11 @@ Vue Atlas Template 是 Vue Atlas 系列的极简后台模板，对标 `vue-admin
 - Pinia 用户状态与菜单权限状态
 - Element Plus 组件和样式自动按需导入
 - Axios 请求基础层与统一错误归一化
-- 登录、退出、Dashboard、Table、Form、401、403、404、500 页面
+- Element Plus 中文语言配置
+- 登录、退出、仪表盘、表格、表单、嵌套菜单、外链、401、403、404、500 页面
 - 开发环境 mock 登录与 mock 列表查询
-- 基础列表筛选、分页和表单校验示例
-- `v-permission` 按钮权限指令
+- 基础列表筛选、分页、新建弹窗和表单校验示例
+- `v-permission` 按钮权限指令，包含有权限和无权限对照示例
 - Vitest 单元测试覆盖菜单、标题和请求错误逻辑
 
 ## 技术栈
@@ -29,6 +30,23 @@ Vue Atlas Template 是 Vue Atlas 系列的极简后台模板，对标 `vue-admin
 | 请求 | axios |
 | 测试 | Vitest |
 | 包管理 | pnpm |
+
+## 对齐 vue-admin-template
+
+Vue Atlas Template 保留的是基础模板应有的核心能力，不把复杂业务模块塞进起步仓库。
+
+| vue-admin-template 思路 | Vue Atlas Template 实现 |
+| --- | --- |
+| 登录 / 退出 | 本地 mock 登录、token 存储、用户信息加载、退出清理状态 |
+| Layout | 侧边栏、顶部栏、主体内容区、响应式折叠 |
+| 路由菜单 | 路由 `meta` 驱动菜单、排序、嵌套菜单、外链菜单 |
+| 面包屑 / 页面标题 | 根据路由匹配和 `meta.title` 自动生成 |
+| 图标 | 支持本地 SVG 图标和 Element Plus Icons |
+| 权限 | 路由权限、菜单权限、`v-permission` 按钮权限 |
+| Axios | 统一请求实例、token 注入、错误归一化、401 登录失效处理 |
+| 基础页面 | 仪表盘、表格、表单、错误页、个人中心 |
+| Mock | 开发环境 mock 登录、用户信息和项目列表 |
+| 工程化 | TypeScript、Vitest、GitHub Actions CI、staging 构建 |
 
 ## 目录结构
 
@@ -91,7 +109,7 @@ export const appSettings = {
 
 ```ts
 meta: {
-  title: 'Dashboard',
+  title: '仪表盘',
   icon: 'svg:dashboard',
   order: 10,
   permissions: ['dashboard:view']
@@ -103,7 +121,7 @@ meta: {
 父级菜单需要始终展示时，可以使用 `alwaysShow`：
 
 ```ts
-meta: { title: 'Nested', icon: 'svg:nested', alwaysShow: true }
+meta: { title: '嵌套菜单', icon: 'svg:nested', alwaysShow: true }
 ```
 
 嵌套菜单由 `src/layout/components/SidebarItem.vue` 递归渲染，示例路由位于 `/nested/menu1` 和 `/nested/menu2/level`。
@@ -112,7 +130,7 @@ meta: { title: 'Nested', icon: 'svg:nested', alwaysShow: true }
 
 ```ts
 meta: {
-  title: 'External Link',
+  title: '外链',
   icon: 'svg:link',
   externalLink: 'https://github.com/lqzo/vue-atlas-template'
 }

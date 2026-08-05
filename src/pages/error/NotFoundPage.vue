@@ -1,9 +1,11 @@
+<script setup lang="ts">
+import ErrorPageShell from './components/ErrorPageShell.vue'
+</script>
+
 <template>
-  <section class="page">
-    <el-result title="404" sub-title="The page you requested does not exist.">
-      <template #extra>
-        <el-button type="primary" @click="$router.push('/')">Back Home</el-button>
-      </template>
-    </el-result>
-  </section>
+  <ErrorPageShell
+    code="404"
+    title="页面不存在"
+    description="你访问的页面可能已被移动、删除，或当前链接地址不正确。"
+  />
 </template>

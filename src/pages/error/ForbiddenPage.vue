@@ -1,9 +1,12 @@
+<script setup lang="ts">
+import ErrorPageShell from './components/ErrorPageShell.vue'
+</script>
+
 <template>
-  <section class="page">
-    <el-result title="403" sub-title="当前账号没有访问该页面的权限。">
-      <template #extra>
-        <el-button type="primary" @click="$router.push('/')">返回首页</el-button>
-      </template>
-    </el-result>
-  </section>
+  <ErrorPageShell
+    code="403"
+    title="没有访问权限"
+    description="当前账号暂时没有访问该页面的权限，可以返回首页或联系管理员开通。"
+    tone="danger"
+  />
 </template>

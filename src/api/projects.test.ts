@@ -16,7 +16,7 @@ describe('getProjectListApi', () => {
 
   it('filters mock projects by keyword and status', async () => {
     const result = await getProjectListApi({
-      keyword: 'validation',
+      keyword: '校验',
       status: 'draft',
       page: 1,
       pageSize: 5
@@ -26,7 +26,7 @@ describe('getProjectListApi', () => {
       total: 1,
       list: [
         {
-          name: 'Form validation',
+          name: '表单校验',
           status: 'draft'
         }
       ]

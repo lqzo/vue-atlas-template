@@ -27,9 +27,7 @@ export function setupRouterGuard(router: Router) {
 
     const requiredPermissions = to.meta.permissions as string[] | undefined
     if (requiredPermissions?.length) {
-      const allowed = requiredPermissions.some((permission) =>
-        userStore.permissions.includes(permission)
-      )
+      const allowed = requiredPermissions.some((permission) => userStore.can(permission))
       if (!allowed) return { path: '/403' }
     }
 

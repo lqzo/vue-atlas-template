@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import UserAvatar from '@/components/UserAvatar.vue'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
@@ -8,17 +9,17 @@ const userStore = useUserStore()
   <section class="page">
     <div class="page-header">
       <div>
-        <h1 class="page-title">Profile</h1>
-        <p class="page-description">A small user profile page linked from the navbar dropdown.</p>
+        <h1 class="page-title">个人中心</h1>
+        <p class="page-description">从顶部用户下拉菜单进入的用户信息页面。</p>
       </div>
     </div>
 
     <el-card shadow="never" class="page-card profile-card">
-      <div class="profile-card__avatar">{{ userStore.name.slice(0, 1) || 'A' }}</div>
+      <UserAvatar :name="userStore.name" size="lg" />
       <div>
         <h2>{{ userStore.name || 'Atlas Admin' }}</h2>
-        <p>Roles: {{ userStore.roles.join(', ') || 'admin' }}</p>
-        <p>Permissions: {{ userStore.permissions.join(', ') || 'dashboard:view' }}</p>
+        <p>角色：{{ userStore.roles.join(', ') || 'admin' }}</p>
+        <p>权限：{{ userStore.permissions.join(', ') || 'dashboard:view' }}</p>
       </div>
     </el-card>
   </section>
@@ -29,18 +30,6 @@ const userStore = useUserStore()
   display: flex;
   align-items: center;
   gap: 18px;
-}
-
-.profile-card__avatar {
-  display: grid;
-  width: 56px;
-  height: 56px;
-  place-items: center;
-  border-radius: 8px;
-  background: #2f80ed;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
 }
 
 .profile-card h2 {

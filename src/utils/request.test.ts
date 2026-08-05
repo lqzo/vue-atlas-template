@@ -42,7 +42,7 @@ describe('normalizeRequestError', () => {
       }
     })
 
-    expect(error.message).toBe('Server error')
+    expect(error.message).toBe('服务器错误')
   })
 
   it('calls unauthorized handler for 401 response errors', async () => {
@@ -64,7 +64,7 @@ describe('normalizeRequestError', () => {
 
     expect(error).toMatchObject({
       status: 401,
-      message: 'Unauthorized'
+      message: '登录状态已失效'
     })
     expect(handledStatus).toBe(401)
   })

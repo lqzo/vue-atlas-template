@@ -22,6 +22,10 @@ function hasRouteAccess(route: AppRouteRecordRaw, access?: RouteAccessContext) {
   return true
 }
 
+function getRouteOrder(route: AppRouteRecordRaw) {
+  return route.meta?.order ?? route.children?.find((child) => !child.meta?.hidden)?.meta?.order ?? 0
+}
+
 export function createMenus(
   routes: AppRouteRecordRaw[],
   parentPath = '',
@@ -30,7 +34,7 @@ export function createMenus(
   return [...routes]
     .filter((route) => !route.meta?.hidden)
     .filter((route) => hasRouteAccess(route, access))
-    .sort((a, b) => (a.meta?.order ?? 0) - (b.meta?.order ?? 0))
+    .sort((a, b) => getRouteOrder(a) - getRouteOrder(b))
     .flatMap((route) => {
       const fullPath = joinPath(parentPath, route.path)
       const children = route.children ? createMenus(route.children, fullPath, access) : []

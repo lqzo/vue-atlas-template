@@ -6,23 +6,23 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     path: '/login',
     name: 'Login',
     component: () => import('@/pages/login/LoginPage.vue'),
-    meta: { hidden: true, title: 'Login' }
+    meta: { hidden: true, title: '登录' }
   },
   {
     path: '/',
     component: AdminLayout,
     redirect: '/dashboard',
-    meta: { title: 'Home', icon: 'House', order: 1 },
+    meta: { title: '首页', icon: 'House', order: 1 },
     children: [
       {
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/pages/dashboard/DashboardPage.vue'),
         meta: {
-          title: 'Dashboard',
+          title: '仪表盘',
           icon: 'svg:dashboard',
-          affix: true,
-          permissions: ['dashboard:view']
+          order: 1,
+          affix: true
         }
       }
     ]
@@ -35,7 +35,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         path: '',
         name: 'Table',
         component: () => import('@/pages/table/TablePage.vue'),
-        meta: { title: 'Table', icon: 'svg:table', order: 20 }
+        meta: { title: '表格', icon: 'svg:table', order: 20 }
       }
     ]
   },
@@ -47,7 +47,7 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         path: '',
         name: 'Form',
         component: () => import('@/pages/form/FormPage.vue'),
-        meta: { title: 'Form', icon: 'svg:form', order: 30 }
+        meta: { title: '表单', icon: 'svg:form', order: 30 }
       }
     ]
   },
@@ -55,23 +55,23 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     path: '/nested',
     component: AdminLayout,
     redirect: '/nested/menu1',
-    meta: { title: 'Nested', icon: 'svg:nested', order: 40, alwaysShow: true },
+    meta: { title: '嵌套菜单', icon: 'svg:nested', order: 40, alwaysShow: true },
     children: [
       {
         path: 'menu1',
         name: 'NestedMenu1',
         component: () => import('@/pages/nested/NestedMenuPage.vue'),
-        meta: { title: 'Menu 1' }
+        meta: { title: '菜单 1' }
       },
       {
         path: 'menu2',
-        meta: { title: 'Menu 2', alwaysShow: true },
+        meta: { title: '菜单 2', alwaysShow: true },
         children: [
           {
             path: 'level',
             name: 'NestedLevel',
             component: () => import('@/pages/nested/NestedLevelPage.vue'),
-            meta: { title: 'Menu 2-1' }
+            meta: { title: '菜单 2-1' }
           }
         ]
       }
@@ -85,14 +85,14 @@ export const constantRoutes: AppRouteRecordRaw[] = [
       {
         path: '',
         component: () => import('@/pages/profile/ProfilePage.vue'),
-        meta: { title: 'Profile', hidden: true }
+        meta: { title: '个人中心', hidden: true }
       }
     ]
   },
   {
     path: '/external-link',
     meta: {
-      title: 'External Link',
+      title: '外链',
       icon: 'svg:link',
       order: 50,
       externalLink: 'https://github.com/lqzo/vue-atlas-template'

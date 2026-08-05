@@ -71,16 +71,16 @@ export function normalizeRequestError(error: unknown) {
   }
 
   if (error instanceof Error) {
-    return new AppRequestError({ message: error.message || 'Request failed' })
+    return new AppRequestError({ message: error.message || '请求失败' })
   }
 
-  return new AppRequestError({ message: 'Request failed' })
+  return new AppRequestError({ message: '请求失败' })
 }
 
 function createErrorFromAxios(error: AxiosError<{ code?: string | number; message?: string }>) {
   const status = error.response?.status
   const responseData = error.response?.data
-  const message = responseData?.message || getStatusMessage(status) || error.message || 'Request failed'
+  const message = responseData?.message || getStatusMessage(status) || error.message || '请求失败'
 
   return new AppRequestError({
     status,
@@ -92,11 +92,11 @@ function createErrorFromAxios(error: AxiosError<{ code?: string | number; messag
 
 function getStatusMessage(status?: number) {
   const messageMap: Record<number, string> = {
-    400: 'Bad request',
-    401: 'Unauthorized',
-    403: 'Forbidden',
-    404: 'Not found',
-    500: 'Server error'
+    400: '请求参数错误',
+    401: '登录状态已失效',
+    403: '没有访问权限',
+    404: '请求资源不存在',
+    500: '服务器错误'
   }
 
   return status ? messageMap[status] : undefined

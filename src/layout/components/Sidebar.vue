@@ -23,7 +23,6 @@ const menuRoutes = computed(() => permissionStore.menus)
     <el-menu
       :collapse="collapsed"
       :default-active="route.meta.activeMenu || route.path"
-      router
       background-color="#172033"
       text-color="#cbd5e1"
     >

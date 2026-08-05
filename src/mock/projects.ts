@@ -3,36 +3,36 @@ import type { ProjectItem, ProjectListResult, ProjectQuery } from '@/api/project
 const projects: ProjectItem[] = [
   {
     id: 1,
-    name: 'Route-driven menu',
-    owner: 'Atlas Team',
+    name: '路由驱动菜单',
+    owner: 'Atlas 团队',
     status: 'active',
     updatedAt: '2026-08-05'
   },
   {
     id: 2,
-    name: 'Permission directive',
-    owner: 'Frontend',
+    name: '权限指令',
+    owner: '前端团队',
     status: 'active',
     updatedAt: '2026-08-05'
   },
   {
     id: 3,
-    name: 'Request wrapper',
-    owner: 'Platform',
+    name: '请求封装',
+    owner: '平台团队',
     status: 'draft',
     updatedAt: '2026-08-05'
   },
   {
     id: 4,
-    name: 'Layout shell',
-    owner: 'Atlas Team',
+    name: '布局外壳',
+    owner: 'Atlas 团队',
     status: 'active',
     updatedAt: '2026-08-04'
   },
   {
     id: 5,
-    name: 'Form validation',
-    owner: 'Business',
+    name: '表单校验',
+    owner: '业务团队',
     status: 'draft',
     updatedAt: '2026-08-04'
   }

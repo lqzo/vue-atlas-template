@@ -6,7 +6,7 @@ export function mockLogin(params: LoginParams) {
     throw new AppRequestError({
       status: 401,
       code: 'INVALID_CREDENTIALS',
-      message: 'Invalid username or password'
+      message: '用户名或密码错误'
     })
   }
 

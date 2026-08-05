@@ -11,7 +11,9 @@ export const useUserStore = defineStore('user', {
     permissions: [] as string[]
   }),
   getters: {
-    isLoggedIn: (state) => Boolean(state.token)
+    isLoggedIn: (state) => Boolean(state.token),
+    can: (state) => (permission: string) =>
+      state.permissions.includes('*') || state.permissions.includes(permission)
   },
   actions: {
     async login(params: LoginParams) {
