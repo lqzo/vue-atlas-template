@@ -100,6 +100,22 @@ meta: {
 
 这些字段会影响菜单、面包屑、页面标题和权限判断。
 
+父级菜单需要始终展示时，可以使用 `alwaysShow`：
+
+```ts
+meta: { title: 'Nested', icon: 'svg:nested', alwaysShow: true }
+```
+
+外链菜单使用 `externalLink`：
+
+```ts
+meta: {
+  title: 'External Link',
+  icon: 'svg:link',
+  externalLink: 'https://github.com/lqzo/vue-atlas-template'
+}
+```
+
 ## 图标
 
 菜单图标支持两种来源：

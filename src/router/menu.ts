@@ -41,10 +41,10 @@ export function createMenus(
 
       return [
         {
-          path: fullPath,
+          path: route.meta.externalLink || fullPath,
           title: route.meta.title,
           icon: route.meta.icon,
-          children: children.length > 1 ? children : undefined
+          children: children.length && route.meta.alwaysShow ? children : children.length > 1 ? children : undefined
         }
       ]
     })

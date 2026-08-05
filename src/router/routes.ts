@@ -52,6 +52,29 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/nested',
+    component: AdminLayout,
+    redirect: '/nested/menu',
+    meta: { title: 'Nested', icon: 'svg:nested', order: 40, alwaysShow: true },
+    children: [
+      {
+        path: 'menu',
+        name: 'NestedMenu',
+        component: () => import('@/pages/nested/NestedMenuPage.vue'),
+        meta: { title: 'Menu 1' }
+      }
+    ]
+  },
+  {
+    path: '/external-link',
+    meta: {
+      title: 'External Link',
+      icon: 'svg:link',
+      order: 50,
+      externalLink: 'https://github.com/lqzo/vue-atlas-template'
+    }
+  },
+  {
     path: '/401',
     name: 'Unauthorized',
     component: () => import('@/pages/error/UnauthorizedPage.vue'),

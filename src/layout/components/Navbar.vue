@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Expand, Fold, SwitchButton } from '@element-plus/icons-vue'
+import { Expand, Fold } from '@element-plus/icons-vue'
 import Breadcrumb from './Breadcrumb.vue'
+import UserDropdown from './UserDropdown.vue'
 
 defineProps<{
   collapsed: boolean
@@ -23,7 +24,7 @@ const emit = defineEmits<{
       />
       <Breadcrumb />
     </div>
-    <el-button :icon="SwitchButton" text @click="emit('logout')">Logout</el-button>
+    <UserDropdown @logout="emit('logout')" />
   </el-header>
 </template>
 

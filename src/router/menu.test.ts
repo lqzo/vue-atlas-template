@@ -45,7 +45,7 @@ describe('createMenus', () => {
         path: '/',
         title: 'Home',
         icon: 'House',
-        children: undefined
+        children: [{ path: '/dashboard', title: 'Dashboard', icon: undefined, children: undefined }]
       }
     ])
   })
@@ -118,6 +118,27 @@ describe('createMenus', () => {
       {
         path: '/dashboard',
         title: 'Dashboard',
+        icon: undefined,
+        children: undefined
+      }
+    ])
+  })
+
+  it('uses external link as menu path', () => {
+    const routes: AppRouteRecordRaw[] = [
+      {
+        path: '/external-link',
+        meta: {
+          title: 'External Link',
+          externalLink: 'https://github.com/lqzo/vue-atlas-template'
+        }
+      }
+    ]
+
+    expect(createMenus(routes)).toEqual([
+      {
+        path: 'https://github.com/lqzo/vue-atlas-template',
+        title: 'External Link',
         icon: undefined,
         children: undefined
       }

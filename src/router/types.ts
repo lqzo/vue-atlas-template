@@ -11,6 +11,7 @@ export interface AppRouteMeta {
   affix?: boolean
   activeMenu?: string
   alwaysShow?: boolean
+  externalLink?: string
 }
 
 export type AppRouteRecordRaw = Omit<RouteRecordRaw, 'children' | 'meta'> & {
