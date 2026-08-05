@@ -2,6 +2,10 @@ import axios, { AxiosError } from 'axios'
 import { ElMessage } from 'element-plus'
 import { getToken } from './auth'
 
+type UnauthorizedHandler = (error: AppRequestError) => void
+
+let unauthorizedHandler: UnauthorizedHandler | undefined
+
 export interface AppRequestErrorPayload {
   status?: number
   code?: string | number
@@ -38,12 +42,26 @@ request.interceptors.request.use((config) => {
 
 request.interceptors.response.use(
   (response) => response.data,
-  (error) => {
-    const requestError = normalizeRequestError(error)
-    ElMessage.error(requestError.message)
-    return Promise.reject(requestError)
-  }
+  (error) => Promise.reject(handleResponseError(error))
 )
+
+export function setupUnauthorizedHandler(handler: UnauthorizedHandler) {
+  unauthorizedHandler = handler
+}
+
+export function handleResponseError(error: unknown, showMessage = true) {
+  const requestError = normalizeRequestError(error)
+
+  if (showMessage) {
+    ElMessage.error(requestError.message)
+  }
+
+  if (requestError.status === 401) {
+    unauthorizedHandler?.(requestError)
+  }
+
+  return requestError
+}
 
 export function normalizeRequestError(error: unknown) {
   if (error instanceof AppRequestError) return error

@@ -3,6 +3,7 @@ import 'nprogress/nprogress.css'
 import './styles/index.scss'
 import App from './App.vue'
 import router from './router'
+import { setupAuthFailureHandler } from './router/auth-failure'
 import { setupRouterGuard } from './router/guard'
 import { createPinia } from 'pinia'
 import { setupPermissionDirective } from './directives/permission'
@@ -14,6 +15,7 @@ app.use(pinia)
 app.use(router)
 
 setupRouterGuard(router)
+setupAuthFailureHandler(router)
 setupPermissionDirective(app)
 
 app.mount('#app')

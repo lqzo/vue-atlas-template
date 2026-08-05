@@ -1,7 +1,7 @@
-const defaultAppTitle = 'Vue Atlas Template'
+import { appSettings } from '@/settings'
 
 export function getAppTitle() {
-  return import.meta.env.VITE_APP_TITLE || defaultAppTitle
+  return import.meta.env.VITE_APP_TITLE || appSettings.title
 }
 
 export function getPageTitle(title?: string) {

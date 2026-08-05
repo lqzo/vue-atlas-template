@@ -36,12 +36,13 @@ Vue Atlas Template 是 Vue Atlas 系列的极简后台模板，对标 `vue-admin
 src/
   api/          接口模块
   directives/   全局指令
-  layout/       后台布局
+  layout/       后台布局与布局组件
   pages/        路由页面
   router/       路由、守卫、菜单生成
   stores/       Pinia 状态
   styles/       全局样式
   utils/        通用工具
+  settings.ts   应用级配置
 ```
 
 ## 开发命令
@@ -64,6 +65,22 @@ password: atlas
 ```
 
 输入其它账号或密码会触发统一错误类型 `AppRequestError`，登录页会展示对应错误状态。
+
+## 应用配置
+
+基础应用配置集中在 `src/settings.ts`：
+
+```ts
+export const appSettings = {
+  title: 'Vue Atlas Template',
+  shortTitle: 'VA',
+  sidebarLogo: true,
+  fixedHeader: false,
+  tokenExpiredRedirect: '/login'
+}
+```
+
+页面标题默认仍可通过 `.env` 中的 `VITE_APP_TITLE` 覆盖。
 
 ## 路由元信息
 
@@ -88,6 +105,15 @@ Template 默认在开发环境中提供两个轻量 mock：
 - `src/api/projects.ts`：项目列表查询、筛选和分页
 
 生产环境下这些 API 会走 `src/utils/request.ts` 中的 axios 实例，接口地址由 `VITE_API_BASE_URL` 控制。
+
+## 登录失效
+
+`src/router/auth-failure.ts` 会把请求层的 401 错误接入路由和用户状态：
+
+- 清理本地 token 和用户状态
+- 重置菜单
+- 跳转到登录页
+- 保留当前页面为 `redirect` 查询参数
 
 ## 自动导入
 

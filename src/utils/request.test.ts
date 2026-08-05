@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { AppRequestError, normalizeRequestError } from './request'
+import {
+  AppRequestError,
+  handleResponseError,
+  normalizeRequestError,
+  setupUnauthorizedHandler
+} from './request'
 
 describe('normalizeRequestError', () => {
   it('keeps normalized request errors unchanged', () => {
@@ -38,5 +43,29 @@ describe('normalizeRequestError', () => {
     })
 
     expect(error.message).toBe('Server error')
+  })
+
+  it('calls unauthorized handler for 401 response errors', async () => {
+    let handledStatus: number | undefined
+    setupUnauthorizedHandler((error) => {
+      handledStatus = error.status
+    })
+
+    const error = handleResponseError(
+      {
+        isAxiosError: true,
+        response: {
+          status: 401,
+          data: {}
+        }
+      },
+      false
+    )
+
+    expect(error).toMatchObject({
+      status: 401,
+      message: 'Unauthorized'
+    })
+    expect(handledStatus).toBe(401)
   })
 })
