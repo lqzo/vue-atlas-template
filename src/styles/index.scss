@@ -31,8 +31,32 @@ a {
   padding: 20px;
 }
 
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
 .page-title {
-  margin: 0 0 16px;
+  margin: 0;
   font-size: 20px;
   font-weight: 650;
+}
+
+.page-description {
+  margin: 6px 0 0;
+  color: var(--atlas-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 16px;
+  }
+
+  .page-header {
+    display: grid;
+  }
 }

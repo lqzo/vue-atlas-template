@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { DataBoard, Expand, Fold, House, SwitchButton } from '@element-plus/icons-vue'
+import { DataBoard, Edit, Expand, Fold, Grid, House, SwitchButton } from '@element-plus/icons-vue'
 import { usePermissionStore } from '@/stores/permission'
 import { useUserStore } from '@/stores/user'
 
@@ -13,6 +13,8 @@ const collapsed = ref(false)
 
 const iconMap = {
   DataBoard,
+  Edit,
+  Grid,
   House
 }
 

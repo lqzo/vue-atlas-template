@@ -28,6 +28,30 @@ export const constantRoutes: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/table',
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        name: 'Table',
+        component: () => import('@/pages/table/TablePage.vue'),
+        meta: { title: 'Table', icon: 'Grid', order: 20 }
+      }
+    ]
+  },
+  {
+    path: '/form',
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        name: 'Form',
+        component: () => import('@/pages/form/FormPage.vue'),
+        meta: { title: 'Form', icon: 'Edit', order: 30 }
+      }
+    ]
+  },
+  {
     path: '/401',
     name: 'Unauthorized',
     component: () => import('@/pages/error/UnauthorizedPage.vue'),

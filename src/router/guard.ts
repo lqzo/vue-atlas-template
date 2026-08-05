@@ -1,14 +1,14 @@
 import type { Router } from 'vue-router'
 import NProgress from 'nprogress'
 import { useUserStore } from '@/stores/user'
+import { getPageTitle } from '@/utils/title'
 
 const whiteList = ['/login']
-const appTitle = import.meta.env.VITE_APP_TITLE || 'Vue Atlas Template'
 
 export function setupRouterGuard(router: Router) {
   router.beforeEach(async (to) => {
     NProgress.start()
-    document.title = to.meta.title ? `${String(to.meta.title)} - ${appTitle}` : appTitle
+    document.title = getPageTitle(to.meta.title)
 
     const userStore = useUserStore()
 

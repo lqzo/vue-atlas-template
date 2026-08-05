@@ -108,4 +108,19 @@ describe('createMenus', () => {
       }
     ])
   })
+
+  it('allows wildcard permissions', () => {
+    const routes: AppRouteRecordRaw[] = [
+      { path: '/dashboard', meta: { title: 'Dashboard', permissions: ['dashboard:view'] } }
+    ]
+
+    expect(createMenus(routes, '', { permissions: ['*'] })).toEqual([
+      {
+        path: '/dashboard',
+        title: 'Dashboard',
+        icon: undefined,
+        children: undefined
+      }
+    ])
+  })
 })
