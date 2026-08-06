@@ -1,4 +1,10 @@
 :root {
+  --atlas-primary: #2f80ed;
+  --atlas-primary-hover: #1d6fd8;
+  --atlas-primary-soft: #eef6ff;
+  --atlas-success: #22c55e;
+  --atlas-warning: #f59e0b;
+  --atlas-danger: #ef4444;
   --atlas-bg: #f6f7fb;
   --atlas-surface: #ffffff;
   --atlas-border: #dcdfe6;
@@ -6,8 +12,15 @@
   --atlas-text: #1f2937;
   --atlas-muted: #6b7280;
   --atlas-sidebar: #172033;
-  --atlas-sidebar-active: #2f80ed;
+  --atlas-sidebar-active: var(--atlas-primary);
   --atlas-page-gap: 16px;
+  --el-color-primary: var(--atlas-primary);
+  --el-color-primary-light-3: #6da8f4;
+  --el-color-primary-light-5: #9bc4f8;
+  --el-color-primary-light-7: #c7ddfb;
+  --el-color-primary-light-8: #d9eaff;
+  --el-color-primary-light-9: var(--atlas-primary-soft);
+  --el-color-primary-dark-2: var(--atlas-primary-hover);
 }
 
 * {
