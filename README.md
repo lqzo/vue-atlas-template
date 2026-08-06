@@ -20,33 +20,33 @@ Vue Atlas Template 是 Vue Atlas 系列的极简后台模板，对标 `vue-admin
 
 ## 技术栈
 
-| 类型 | 选择 |
-| --- | --- |
-| 框架 | Vue 3 |
-| 路由 | Vue Router 5 |
-| 状态 | Pinia |
-| 构建 | Vite |
-| UI | Element Plus |
-| 请求 | axios |
-| 测试 | Vitest |
-| 包管理 | pnpm |
+| 类型   | 选择         |
+| ------ | ------------ |
+| 框架   | Vue 3        |
+| 路由   | Vue Router 5 |
+| 状态   | Pinia        |
+| 构建   | Vite         |
+| UI     | Element Plus |
+| 请求   | axios        |
+| 测试   | Vitest       |
+| 包管理 | pnpm         |
 
 ## 对齐 vue-admin-template
 
 Vue Atlas Template 保留的是基础模板应有的核心能力，不把复杂业务模块塞进起步仓库。
 
-| vue-admin-template 思路 | Vue Atlas Template 实现 |
-| --- | --- |
-| 登录 / 退出 | 本地 mock 登录、token 存储、用户信息加载、退出清理状态 |
-| Layout | 侧边栏、顶部栏、主体内容区、响应式折叠 |
-| 路由菜单 | 路由 `meta` 驱动菜单、排序、嵌套菜单、外链菜单 |
-| 面包屑 / 页面标题 | 根据路由匹配和 `meta.title` 自动生成 |
-| 图标 | 支持本地 SVG 图标和 Element Plus Icons |
-| 权限 | 路由权限、菜单权限、`v-permission` 按钮权限 |
-| Axios | 统一请求实例、token 注入、错误归一化、401 登录失效处理 |
-| 基础页面 | 仪表盘、表格、表单、错误页、个人中心 |
-| Mock | 开发环境 mock 登录、用户信息和项目列表 |
-| 工程化 | TypeScript、Vitest、GitHub Actions CI、staging 构建 |
+| vue-admin-template 思路 | Vue Atlas Template 实现                                |
+| ----------------------- | ------------------------------------------------------ |
+| 登录 / 退出             | 本地 mock 登录、token 存储、用户信息加载、退出清理状态 |
+| Layout                  | 侧边栏、顶部栏、主体内容区、响应式折叠                 |
+| 路由菜单                | 路由 `meta` 驱动菜单、排序、嵌套菜单、外链菜单         |
+| 面包屑 / 页面标题       | 根据路由匹配和 `meta.title` 自动生成                   |
+| 图标                    | 支持本地 SVG 图标和 Element Plus Icons                 |
+| 权限                    | 路由权限、菜单权限、`v-permission` 按钮权限            |
+| Axios                   | 统一请求实例、token 注入、错误归一化、401 登录失效处理 |
+| 基础页面                | 仪表盘、表格、表单、错误页、个人中心                   |
+| Mock                    | 开发环境 mock 登录、用户信息和项目列表                 |
+| 工程化                  | TypeScript、Vitest、GitHub Actions CI、staging 构建    |
 
 ## 目录结构
 
@@ -141,8 +141,12 @@ meta: {
 菜单图标支持两种来源：
 
 ```ts
-meta: { icon: 'svg:dashboard' } // 使用 src/icons/svg/dashboard.svg
-meta: { icon: 'DataBoard' }     // 使用 Element Plus Icons
+meta: {
+  icon: 'svg:dashboard'
+} // 使用 src/icons/svg/dashboard.svg
+meta: {
+  icon: 'DataBoard'
+} // 使用 Element Plus Icons
 ```
 
 新增 SVG 图标时，把文件放到 `src/icons/svg/`，然后在路由 meta 中使用 `svg:文件名`。

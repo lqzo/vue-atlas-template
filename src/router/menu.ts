@@ -14,7 +14,10 @@ function hasRouteAccess(route: AppRouteRecordRaw, access?: RouteAccessContext) {
   if (roles?.length && !roles.some((role) => access?.roles?.includes(role))) return false
   if (permissions?.length) {
     const userPermissions = access?.permissions ?? []
-    if (!userPermissions.includes('*') && !permissions.some((item) => userPermissions.includes(item))) {
+    if (
+      !userPermissions.includes('*') &&
+      !permissions.some((item) => userPermissions.includes(item))
+    ) {
       return false
     }
   }
@@ -48,7 +51,12 @@ export function createMenus(
           path: route.meta.externalLink || fullPath,
           title: route.meta.title,
           icon: route.meta.icon,
-          children: children.length && route.meta.alwaysShow ? children : children.length > 1 ? children : undefined
+          children:
+            children.length && route.meta.alwaysShow
+              ? children
+              : children.length > 1
+                ? children
+                : undefined
         }
       ]
     })

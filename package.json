@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.1.1",
   "description": "A clean Vue Atlas starter template for modern admin applications.",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "build:staging": "vue-tsc --noEmit && vite build --mode staging",
     "preview": "vite preview",
+    "lint": "oxlint . --vue-plugin --vitest-plugin --deny-warnings --ignore-pattern dist --ignore-pattern node_modules --ignore-pattern src/auto-imports.d.ts --ignore-pattern src/components.d.ts",
+    "lint:fix": "pnpm lint --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run"
   },
@@ -25,6 +30,8 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/test-utils": "^2.4.11",
     "jsdom": "^29.1.1",
+    "oxlint": "^1.77.0",
+    "prettier": "^3.9.6",
     "sass": "^1.102.0",
     "typescript": "^6.0.3",
     "unplugin-auto-import": "^21.1.0",
@@ -32,5 +39,10 @@
     "vite": "^8.2.0",
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher"
+    ]
   }
 }

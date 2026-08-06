@@ -1,10 +1,4 @@
-import {
-  effectScope,
-  watchEffect,
-  type App,
-  type DirectiveBinding,
-  type EffectScope
-} from 'vue'
+import { effectScope, watchEffect, type App, type DirectiveBinding, type EffectScope } from 'vue'
 import { useUserStore } from '@/stores/user'
 
 type PermissionElement = HTMLElement & {
