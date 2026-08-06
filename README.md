@@ -29,6 +29,8 @@ Vue Atlas Template 是 Vue Atlas 系列的极简后台模板，对标 `vue-admin
 | UI     | Element Plus |
 | 请求   | axios        |
 | 测试   | Vitest       |
+| Lint   | Oxlint       |
+| 格式化 | Prettier     |
 | 包管理 | pnpm         |
 
 ## 对齐 vue-admin-template
@@ -70,6 +72,8 @@ src/
 ```bash
 pnpm install
 pnpm dev
+pnpm format:check
+pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
@@ -176,11 +180,13 @@ Template 默认在开发环境中提供两个轻量 mock：
 
 仓库已提供 GitHub Actions CI，会在 push 和 pull request 时执行：
 
+- `pnpm format:check`
+- `pnpm lint`
 - `pnpm typecheck`
 - `pnpm test`
 - `pnpm build`
 
-编辑器基础格式通过 `.editorconfig` 约束，统一使用 LF、2 空格缩进和 UTF-8。
+代码格式由 Prettier 统一管理，静态检查由 Oxlint 执行。编辑器基础格式通过 `.editorconfig` 约束，统一使用 LF、2 空格缩进和 UTF-8。
 
 CI 使用 Node 24 和 pnpm 11.1.1。pnpm 会先通过 Corepack 启用，再交给 `actions/setup-node` 做依赖缓存。
 
