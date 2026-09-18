@@ -1,7 +1,7 @@
 import type { Router } from 'vue-router'
 import NProgress from 'nprogress'
 import { useUserStore } from '@/stores/user'
-import { checkPermission, checkRole } from '@/utils/permission'
+import { checkRouteAccess } from '@/utils/permission'
 import { getPageTitle } from '@/utils/title'
 
 const whiteList = ['/login']
@@ -26,11 +26,12 @@ export function setupRouterGuard(router: Router) {
       await userStore.loadProfile()
     }
 
-    const roles = to.meta.roles as string[] | undefined
-    if (!checkRole(roles, { roles: userStore.roles })) return { path: '/403' }
-
-    const permissions = to.meta.permissions as string[] | undefined
-    if (!checkPermission(permissions, { permissions: userStore.permissions })) {
+    if (
+      !checkRouteAccess(
+        { roles: to.meta.roles, permissions: to.meta.permissions },
+        { roles: userStore.roles, permissions: userStore.permissions }
+      )
+    ) {
       return { path: '/403' }
     }
 

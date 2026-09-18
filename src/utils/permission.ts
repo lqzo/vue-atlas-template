@@ -17,3 +17,7 @@ export function checkRole(required: string[] | undefined, access: PermissionAcce
   if (!required?.length) return true
   return required.some((role) => access.roles?.includes(role))
 }
+
+export function checkRouteAccess(requirements: PermissionAccess, access: PermissionAccess) {
+  return checkRole(requirements.roles, access) && checkPermission(requirements.permissions, access)
+}

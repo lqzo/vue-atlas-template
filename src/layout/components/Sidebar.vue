@@ -9,6 +9,10 @@ defineProps<{
   collapsed: boolean
 }>()
 
+const emit = defineEmits<{
+  navigate: []
+}>()
+
 const route = useRoute()
 const permissionStore = usePermissionStore()
 const menuRoutes = computed(() => permissionStore.menus)
@@ -25,6 +29,7 @@ const menuRoutes = computed(() => permissionStore.menus)
       :default-active="route.meta.activeMenu || route.path"
       background-color="#172033"
       text-color="#cbd5e1"
+      @select="emit('navigate')"
     >
       <SidebarItem v-for="item in menuRoutes" :key="item.path" :item="item" />
     </el-menu>

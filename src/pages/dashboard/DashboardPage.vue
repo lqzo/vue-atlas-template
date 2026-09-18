@@ -34,9 +34,9 @@ const checklist = [
   'Element Plus 自动导入和按需样式'
 ]
 
-function handlePermissionAction() {
+function handlePermissionAction(action = '仪表盘') {
   permissionActionCount.value += 1
-  permissionActionStatus.value = `权限校验通过 ${permissionActionCount.value} 次：${permissionsText.value}`
+  permissionActionStatus.value = `${action}权限校验通过 ${permissionActionCount.value} 次：${permissionsText.value}`
   ElMessage.success(permissionActionStatus.value)
 }
 </script>
@@ -84,11 +84,16 @@ function handlePermissionAction() {
             <el-button
               v-permission="'dashboard:view'"
               type="primary"
-              @click="handlePermissionAction"
+              @click="handlePermissionAction('仪表盘')"
             >
               执行权限动作
             </el-button>
-            <el-button v-permission="'system:user:list'">用户管理动作</el-button>
+            <el-button
+              v-permission="'system:user:list'"
+              @click="handlePermissionAction('用户管理')"
+            >
+              用户管理动作
+            </el-button>
           </div>
           <div class="permission-demo__result" aria-live="polite">
             {{ permissionActionStatus }}

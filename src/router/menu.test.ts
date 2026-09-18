@@ -51,6 +51,20 @@ describe('createMenus', () => {
     expect(createMenus(routes).map((item) => item.title)).toEqual(['Dashboard', 'Table', 'Form'])
   })
 
+  it('promotes every visible child of a titleless layout route', () => {
+    const routes: AppRouteRecordRaw[] = [
+      {
+        path: '/',
+        children: [
+          { path: 'dashboard', meta: { title: 'Dashboard' } },
+          { path: 'profile', meta: { title: 'Profile' } }
+        ]
+      }
+    ]
+
+    expect(createMenus(routes).map((item) => item.title)).toEqual(['Dashboard', 'Profile'])
+  })
+
   it('keeps parent menu when alwaysShow is true', () => {
     const routes: AppRouteRecordRaw[] = [
       {

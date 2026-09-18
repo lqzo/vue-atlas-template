@@ -119,4 +119,9 @@ a {
     justify-content: flex-start;
     overflow-x: auto;
   }
+
+  .el-dialog {
+    width: calc(100% - 28px) !important;
+    max-width: 620px;
+  }
 }

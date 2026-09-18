@@ -1,4 +1,5 @@
 import type { AppMenuItem, AppRouteRecordRaw, RouteAccessContext } from './types'
+import { checkRouteAccess } from '@/utils/permission'
 
 function joinPath(parentPath: string, childPath: string) {
   if (!childPath) return parentPath || '/'
@@ -8,21 +9,10 @@ function joinPath(parentPath: string, childPath: string) {
 }
 
 function hasRouteAccess(route: AppRouteRecordRaw, access?: RouteAccessContext) {
-  const roles = route.meta?.roles
-  const permissions = route.meta?.permissions
-
-  if (roles?.length && !roles.some((role) => access?.roles?.includes(role))) return false
-  if (permissions?.length) {
-    const userPermissions = access?.permissions ?? []
-    if (
-      !userPermissions.includes('*') &&
-      !permissions.some((item) => userPermissions.includes(item))
-    ) {
-      return false
-    }
-  }
-
-  return true
+  return checkRouteAccess(
+    { roles: route.meta?.roles, permissions: route.meta?.permissions },
+    access ?? {}
+  )
 }
 
 function getRouteOrder(route: AppRouteRecordRaw) {
@@ -42,8 +32,7 @@ export function createMenus(
       const fullPath = joinPath(parentPath, route.path)
       const children = route.children ? createMenus(route.children, fullPath, access) : []
 
-      if (!route.meta?.title && children.length === 1) return children
-      if (!route.meta?.title) return []
+      if (!route.meta?.title) return children
       if (children.length === 1 && !route.meta.alwaysShow) return children
 
       return [

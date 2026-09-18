@@ -19,12 +19,14 @@ const rules: FormRules = {
 }
 
 async function save() {
-  await formRef.value?.validate()
+  const valid = await formRef.value?.validate().catch(() => false)
+  if (!valid) return
   ElMessage.success('保存成功')
 }
 
 function reset() {
   formRef.value?.resetFields()
+  ElMessage.success('表单已重置')
 }
 </script>
 
